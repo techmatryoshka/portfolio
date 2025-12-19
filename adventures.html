@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Adventures — Amina Radončić</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   AMINA RADONČIĆ - DIFFERENT BY DESIGN
+   Cosmic Dark Theme with Purple Gradients
+   ============================================ */
+
+/* CSS Variables */
+:root {
+    --bg-dark: #0d0d0f;
+    --bg-darker: #080809;
+    --bg-card: #151518;
+    --bg-card-hover: #1a1a1f;
+    --purple-primary: #c77dff;
+    --purple-light: #e0aaff;
+    --purple-dark: #9d4edd;
+    --purple-darker: #7b2cbf;
+    --lavender: #b8a9c9;
+    --pink: #f472b6;
+    --pink-light: #f9a8d4;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --border: rgba(199, 125, 255, 0.15);
+    --border-hover: rgba(199, 125, 255, 0.4);
+    --glow: rgba(199, 125, 255, 0.4);
+    --glow-strong: rgba(199, 125, 255, 0.6);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-primary) 50%, var(--pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   COSMIC BACKGROUND
+   ============================================ */
+.cosmic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+}
+
+.cosmic-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(ellipse at 20% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(199, 125, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 60%, rgba(244, 114, 182, 0.08) 0%, transparent 40%);
+    animation: cosmicDrift 30s ease-in-out infinite;
+}
+
+@keyframes cosmicDrift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(2%, 1%) rotate(1deg); }
+    66% { transform: translate(-1%, 2%) rotate(-1deg); }
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(199, 125, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 160px 120px, rgba(199, 125, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 200px 150px, rgba(255,255,255,0.4), transparent),
+        radial-gradient(2px 2px at 250px 180px, rgba(244, 114, 182, 0.4), transparent);
+    background-size: 300px 300px;
+    animation: twinkle 8s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.planet-1 {
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    right: -150px;
+    background: linear-gradient(135deg, var(--purple-darker) 0%, var(--purple-primary) 50%, var(--purple-light) 100%);
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float1 25s ease-in-out infinite;
+}
+
+.planet-2 {
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    left: -100px;
+    background: linear-gradient(135deg, var(--purple-darker) 0%, var(--purple-dark) 100%);
+    filter: blur(50px);
+    opacity: 0.4;
+    animation: float2 30s ease-in-out infinite;
+}
+
+.planet-3 {
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    right: 5%;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--purple-primary) 100%);
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: float3 20s ease-in-out infinite;
+}
+
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-40px, 30px); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -40px); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, -25px); }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+    background: rgba(13, 13, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-menu a {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--text-primary);
+    background: rgba(199, 125, 255, 0.1);
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--purple-primary);
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
+    color: var(--text-primary);
+    box-shadow: 0 4px 20px var(--glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px var(--glow-strong);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-hover);
+}
+
+.btn-outline:hover {
+    background: rgba(199, 125, 255, 0.1);
+    border-color: var(--purple-primary);
+}
+
+/* ============================================
+   HERO SECTIONS
+   ============================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.hero-home .hero-content {
+    text-align: center;
+    max-width: 900px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple-primary);
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title .title-line {
+    display: block;
+    font-size: clamp(3rem, 10vw, 7rem);
+    letter-spacing: -0.03em;
+}
+
+.hero-title .title-line:first-child {
+    color: var(--text-primary);
+}
+
+.hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.scroll-indicator::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--purple-primary), transparent);
+}
+
+/* Page Hero (smaller) */
+.hero-page {
+    min-height: 50vh;
+    padding-top: 10rem;
+}
+
+.hero-page .hero-content {
+    text-align: center;
+}
+
+.hero-page .page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-page .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   SECTION STYLING
+   ============================================ */
+section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple-primary);
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+.stats-section {
+    padding: 4rem 0;
+    background: linear-gradient(180deg, transparent, rgba(157, 78, 221, 0.05), transparent);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--purple-primary);
+    transform: translateY(-4px);
+}
+
+.stat-number {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ============================================
+   FEATURED SECTION
+   ============================================ */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.featured-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.featured-card:hover {
+    border-color: var(--purple-primary);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.featured-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-card:hover .featured-image img {
+    transform: scale(1.05);
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-card-hover), var(--purple-darker));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.featured-content {
+    padding: 1.5rem;
+}
+
+.featured-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    background: rgba(199, 125, 255, 0.2);
+    color: var(--purple-light);
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+}
+
+.featured-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.featured-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.featured-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.section-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* ============================================
+   RESEARCH HIGHLIGHT
+   ============================================ */
+.research-highlight {
+    background: linear-gradient(180deg, transparent, rgba(157, 78, 221, 0.08), transparent);
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.research-content .section-tag {
+    text-align: left;
+}
+
+.research-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.research-content > p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.research-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.research-tags span {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+    background: rgba(199, 125, 255, 0.1);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-secondary);
+}
+
+.research-stats {
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+}
+
+.pub-highlight {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+}
+
+.pub-number {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple-light), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pub-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.pub-item {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+}
+
+/* ============================================
+   QUOTE SECTION
+   ============================================ */
+.quote-section {
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.quote-decoration {
+    font-family: 'Syne', sans-serif;
+    font-size: 10rem;
+    color: var(--purple-primary);
+    opacity: 0.1;
+    line-height: 1;
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+blockquote {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-author {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+}
+
+/* ============================================
+   CAMPAIGN TEASER
+   ============================================ */
+.campaign-teaser {
+    padding: 4rem 0 8rem;
+}
+
+.campaign-card {
+    background: var(--bg-card);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.campaign-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.campaign-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
+    color: var(--text-primary);
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.campaign-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--purple-light), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.campaign-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+.campaign-visual {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.infinity-symbol {
+    font-family: 'Syne', sans-serif;
+    font-size: 6rem;
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-primary), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.sparkle {
+    position: absolute;
+    color: var(--purple-primary);
+    font-size: 1rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle-1 { top: 0; left: 20%; animation-delay: 0s; }
+.sparkle-2 { top: 30%; right: 0; animation-delay: 0.5s; }
+.sparkle-3 { bottom: 10%; left: 10%; animation-delay: 1s; }
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: var(--bg-darker);
+    border-top: 1px solid var(--border);
+    padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--purple-light), var(--purple-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-brand > p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.footer-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(199, 125, 255, 0.2);
+    color: var(--purple-light);
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--purple-primary);
+}
+
+.footer-social h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--purple-primary);
+    border-color: var(--purple-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-bottom .signature {
+    color: var(--purple-primary);
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   CARDS (General)
+   ============================================ */
+.card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--purple-primary);
+    transform: translateY(-4px);
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--purple-primary), var(--purple-primary), transparent);
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-entry.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -40px;
+    top: 1.5rem;
+    width: 10px;
+    height: 10px;
+    background: var(--purple-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--glow);
+}
+
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--purple-primary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.timeline-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-primary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timeline-date::before {
+    content: '✦';
+    font-size: 0.5rem;
+}
+
+.timeline-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.timeline-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--purple-primary);
+    transform: translateX(8px);
+}
+
+/* ============================================
+   GALLERY GRID
+   ============================================ */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.gallery-overlay p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   PUBLICATION LIST
+   ============================================ */
+.publication-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.publication-item {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    transition: all 0.3s ease;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.publication-item:hover {
+    border-color: var(--purple-primary);
+    transform: translateX(8px);
+}
+
+.publication-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--purple-primary);
+    min-width: 60px;
+}
+
+.publication-info h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.publication-info p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.publication-citations {
+    text-align: center;
+}
+
+.citation-count {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--pink);
+}
+
+.citation-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   CERTIFICATIONS GRID
+   ============================================ */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.cert-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+    border-color: var(--purple-primary);
+    transform: translateY(-4px);
+}
+
+.cert-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--text-primary);
+}
+
+.cert-card h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cert-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.cert-card .cert-issuer {
+    font-size: 0.75rem;
+    color: var(--purple-primary);
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.contact-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+}
+
+.contact-item svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--purple-primary);
+}
+
+.contact-item a {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--purple-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        border-left: 1px solid var(--border);
+        transition: right 0.3s ease;
+    }
+
+    .nav-menu.open {
+        right: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campaign-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .campaign-visual {
+        margin: 0 auto;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-title .title-line {
+        font-size: clamp(2rem, 12vw, 4rem);
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        padding-left: 40px;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-marker {
+        left: -30px;
+    }
+
+    .publication-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .publication-year {
+        font-size: 1rem;
+    }
+}
+
+
+/* Adventures page specific styles */
+.stats-banner { padding: 2rem 0; background: linear-gradient(180deg, transparent, rgba(157, 78, 221, 0.08), transparent); }
+.adventure-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.adventure-stat { text-align: center; }
+.stat-num { display: block; font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--purple-light), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-txt { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+
+.filter-section { padding: 2rem 0; }
+.filter-tags { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+.filter-tag { padding: 0.5rem 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary); font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+.filter-tag:hover, .filter-tag.active { background: rgba(199, 125, 255, 0.2); border-color: var(--purple-primary); color: var(--text-primary); }
+
+.adventures-section { padding: 2rem 0 6rem; }
+
+.year-marker { display: flex; align-items: center; justify-content: center; margin: 3rem 0 2rem; }
+.year-marker span { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; padding: 0.5rem 2rem; background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary)); border-radius: 30px; color: var(--text-primary); }
+
+.timeline-card h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.4; }
+.timeline-card p { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.8; }
+.timeline-card strong { color: var(--purple-light); }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+
+.entry-tag { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 500; }
+.entry-tag.conference { background: rgba(122, 158, 159, 0.3); color: #7a9e9f; }
+.entry-tag.hackathon { background: rgba(244, 114, 182, 0.2); color: var(--pink); }
+.entry-tag.school { background: rgba(96, 165, 250, 0.2); color: #93c5fd; }
+.entry-tag.workshop { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+.entry-tag.milestone { background: linear-gradient(135deg, var(--purple-dark), var(--purple-primary)); color: var(--text-primary); }
+
+.entry-tag.organizer { background: linear-gradient(135deg, #f472b6, #c77dff); color: white; }
+
+.timeline-card.featured-card { border: 2px solid var(--purple-primary); box-shadow: 0 0 30px rgba(199, 125, 255, 0.2); }
+
+.entry-location { font-size: 0.8rem; color: var(--text-muted); }
+
+.entry-signature { font-style: italic; color: var(--purple-light) !important; margin-top: 1.5rem !important; }
+
+.entry-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.entry-tags span { font-size: 0.7rem; padding: 0.3rem 0.7rem; background: rgba(199, 125, 255, 0.1); border: 1px solid var(--border); border-radius: 12px; color: var(--text-muted); }
+
+.entry-link { display: inline-block; margin-top: 1rem; color: var(--purple-primary); font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; }
+.entry-link:hover { color: var(--purple-light); transform: translateX(4px); }
+
+.more-adventures { text-align: center; margin-top: 3rem; padding: 2rem; color: var(--purple-primary); font-style: italic; }
+
+@media (max-width: 640px) {
+    .adventure-stats { gap: 1.5rem; }
+    .stat-num { font-size: 2rem; }
+    .card-header { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+    <div class="stars"></div>
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><span class="logo-text">Amina Radončić</span></a>
+            <button class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="adventures.html" class="active">Adventures</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="ndinstem.html">#NDinSTEM</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero hero-page">
+        <div class="hero-content">
+            <p class="hero-tag">✦ Conferences, Hackathons & Wild Rides ✦</p>
+            <h1 class="page-title">Engineering <span class="gradient-text">Adventures</span></h1>
+            <p class="page-subtitle">From shy student to bold researcher and presenter - here's my academic adventure log!</p>
+        </div>
+    </section>
+
+    <section class="stats-banner">
+        <div class="container">
+            <div class="adventure-stats">
+                <div class="adventure-stat">
+                    <span class="stat-num">15+</span>
+                    <span class="stat-txt">Conferences</span>
+                </div>
+                <div class="adventure-stat">
+                    <span class="stat-num">1</span>
+                    <span class="stat-txt">Symposium Organized</span>
+                </div>
+                <div class="adventure-stat">
+                    <span class="stat-num">20+</span>
+                    <span class="stat-txt">Events Attended</span>
+                </div>
+                <div class="adventure-stat">
+                    <span class="stat-num">3</span>
+                    <span class="stat-txt">Countries</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-tags">
+                <button class="filter-tag active" data-filter="all">All</button>
+                <button class="filter-tag" data-filter="2025">2025</button>
+                <button class="filter-tag" data-filter="2024">2024</button>
+                <button class="filter-tag" data-filter="2023">2023</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="adventures-section">
+        <div class="container">
+            <div class="timeline">
+                
+                <!-- 2025 -->
+                <div class="year-marker" data-year="2025">
+                    <span>2025</span>
+                </div>
+
+                <!-- BioNexus 2025 -->
+                <article class="timeline-entry" data-category="2025" id="bionexus">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2025</p>
+                    <div class="timeline-card featured-card">
+                        <div class="card-header">
+                            <span class="entry-tag organizer">🌟 Organizer + Chair</span>
+                            <span class="entry-location">📍 Online / IBU</span>
+                        </div>
+                        <h3>BIONEXUS 2025: Organizer & Chair of Biomedical Engineering Session! 🎉</h3>
+                        <p>Organized the <strong>FIRST online student symposium</strong> for Engineering, Natural and Medical Sciences on behalf of <strong>International Burch University</strong>!</p>
+                        <p>Also served as <strong>Chair of the Biomedical Engineering session</strong> — because why do one job when you can do two? 😄</p>
+                        <p>From attendee to presenter to session chair to symposium organizer... <strong>the full academic evolution!</strong> 🚀</p>
+                        <div class="entry-tags"><span>Organizer</span><span>Session Chair</span><span>Symposium</span><span>IBU</span><span>Biomedical Engineering</span><span>First Edition</span></div>
+                    </div>
+                </article>
+
+                <!-- NT-2025 -->
+                <article class="timeline-entry" data-category="2025" id="nt2025">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">June 2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag conference">Conference</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>NT-2025: Youngest Presenter & New Robotics Association Member 🏆</h3>
+                        <p>Participated in the International Conference NT-2025 at <strong>Akademija nauka i umjetnosti Bosne i Hercegovine (ANUBiH)</strong> as the <strong>youngest presenter</strong> and newest member of the Robotics Association of BiH!</p>
+                        <p>Presented my Master's thesis work — deep learning for stress detection using 3D LSTM through multimodal analysis of EEG and EKG data.</p>
+                        <p class="entry-signature">... and now, off to the new adventure! 🚀</p>
+                        <div class="entry-tags"><span>3D LSTM</span><span>EEG/EKG</span><span>Stress Detection</span><span>ANUBiH</span><span>Robotics Association</span></div>
+                    </div>
+                </article>
+
+                <!-- BR41NIO -->
+                <article class="timeline-entry" data-category="2025" id="br41nio">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">May 2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag hackathon">Hackathon</span>
+                            <span class="entry-location">📍 International</span>
+                        </div>
+                        <h3>BR41NIO Hackathon: Building NeuroSecure 🧠🔐</h3>
+                        <p>Over <strong>700 attendees</strong>, and only one of them is Bosnian — me! ✨</p>
+                        <p>Built <strong>"NeuroSecure"</strong> — a biometric authentication system powered by EEG data and ML classification models for cybersecurity enhancement in medical facilities.</p>
+                        <p>Half the team did ML in Python, I handled the scary backend in raw MATLAB code (~300 lines for the mock-up). 😬</p>
+                        <p class="entry-signature">Looking forward to many more engineering adventures from Amina's RGB lab. Until then — stay curious. 🌊</p>
+                        <div class="entry-tags"><span>EEG</span><span>Biometrics</span><span>Cybersecurity</span><span>MATLAB</span><span>g.tec</span></div>
+                    </div>
+                </article>
+
+                <!-- CEI Trieste 2025 -->
+                <article class="timeline-entry" data-category="2025" id="trieste2025">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">May 2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag school">Spring School</span>
+                            <span class="entry-location">📍 Trieste, Italy 🇮🇹</span>
+                        </div>
+                        <h3>13th CEI Spring School: Sole Representative for Bosnia 🇧🇦</h3>
+                        <p>Attended the 13th Spring School on clinical engineering organized by the <strong>Central European Initiative</strong>, University of Trieste, and BioingTS.</p>
+                        <p>Honor and beyond to be the <strong>sole representative for my country</strong> and WeWomEngineers as an international ambassador!</p>
+                        <p class="entry-signature">Off to the new quest. 🧭🇧🇦</p>
+                        <div class="entry-tags"><span>Clinical Engineering</span><span>Digital Health</span><span>CEI</span><span>International Ambassador</span></div>
+                    </div>
+                </article>
+
+                <!-- CMBEBIH25 -->
+                <article class="timeline-entry" data-category="2025">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag conference">Conference</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>CMBEBIH'25: From Student to Chair 🚂</h3>
+                        <p>Two years and <strong>nine publications</strong> after MEDICON23 & CMBEBIH23, here I come again!</p>
+                        <p>Now a <strong>PhD student and full-time independent researcher</strong>, presenting a fragment of my Master's thesis on the greatest academic platform for young researchers in Southeastern Europe.</p>
+                        <p>Representing <strong>WeWomEngineers</strong> as the Chair of International Ambassadorship team! 💚</p>
+                        <div class="entry-tags"><span>Presenter</span><span>WeWomEngineers Chair</span><span>9 Publications</span></div>
+                    </div>
+                </article>
+
+                <!-- Soft Skills Academy -->
+                <article class="timeline-entry" data-category="2025">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">April 2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag school">School</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>Soft Skills Academy 2025 💡</h3>
+                        <p>Because engineering isn't just about the code — it's about communication, leadership, and collaboration too!</p>
+                        <p>This one was <strong>A HANDFUL</strong>. Intensive, challenging, and absolutely worth it. Sometimes the hardest skills to learn aren't the technical ones! 😅</p>
+                        <div class="entry-tags"><span>Soft Skills</span><span>Leadership</span><span>Communication</span><span>Professional Development</span><span>Intensive</span></div>
+                    </div>
+                </article>
+
+                <!-- Linux Switch -->
+                <article class="timeline-entry" data-category="2025">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2025</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag milestone">Tech Milestone</span>
+                            <span class="entry-location">📍 Amina's RGB Lab</span>
+                        </div>
+                        <h3>Switched to Linux — Changed the Way I Code 🐧</h3>
+                        <p>Switched to <strong>Debian full-time</strong> on my laptop. Fast, lightweight, full control.</p>
+                        <p>Working directly in the terminal (scary at first, now it's a playground!), configuring systems, understanding how everything fits together.</p>
+                        <p><strong>If it ain't challenging — it ain't fun.</strong> 🔥</p>
+                        <div class="entry-tags"><span>Linux</span><span>Debian</span><span>Terminal</span><span>#WomenInTech</span></div>
+                    </div>
+                </article>
+
+                <!-- 2024 -->
+                <div class="year-marker" data-year="2024">
+                    <span>2024</span>
+                </div>
+
+                <!-- WeWomEngineers Interview -->
+                <article class="timeline-entry" data-category="2024" id="wwe-interview">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card featured-card">
+                        <div class="card-header">
+                            <span class="entry-tag milestone">🌟 Featured</span>
+                            <span class="entry-location">📍 International</span>
+                        </div>
+                        <h3>WeWomEngineers: First International Interview! 🎤</h3>
+                        <p>Got featured in <strong>WeWomEngineers' FIRST international interview</strong>!</p>
+                        <p>"Gaining knowledge for me is pointless if I can't share it with others and inspire them to strive for excellence and never give up on their dreams."</p>
+                        <p>"Success is not linear and setbacks are often integral parts of the journey. I wish to highlight the importance of <strong>perseverance, resilience, and passion</strong> in overcoming obstacles."</p>
+                        <a href="https://www.wewomengineers.com/we-wom-engineers-meet-amina-radoncic-our-first-international-interview/" target="_blank" class="entry-link">Read the full interview →</a>
+                        <div class="entry-tags"><span>Interview</span><span>WeWomEngineers</span><span>International</span><span>First</span><span>Women in STEM</span></div>
+                    </div>
+                </article>
+
+                <!-- IFMBE WICE -->
+                <article class="timeline-entry" data-category="2024" id="wice">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card featured-card">
+                        <div class="card-header">
+                            <span class="entry-tag milestone">📚 Published</span>
+                            <span class="entry-location">📍 IFMBE</span>
+                        </div>
+                        <h3>Stories of WICE: Women in Clinical Engineering 📖</h3>
+                        <p>Got my story published in the <strong>IFMBE "Stories of WICE"</strong> book — highlighting groundbreaking contributions of women in clinical engineering!</p>
+                        <p>Part of a collection celebrating female engineers and serving as inspiration for future generations. 💜</p>
+                        <div class="entry-tags"><span>IFMBE</span><span>Publication</span><span>Women in Engineering</span><span>Clinical Engineering</span><span>Book Chapter</span></div>
+                    </div>
+                </article>
+
+                <!-- NT-2024 -->
+                <article class="timeline-entry" data-category="2024">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag conference">Conference</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>NT-2024: Industry of the Future — RNN Presentation 🧠</h3>
+                        <p>Presented at the conference <strong>"Industry of the Future: From Industry 4.0 to Industry 5.0"</strong> at ANUBiH.</p>
+                        <p>Talked about <strong>mathematical modeling behind RNN in biomedical analysis</strong> — the final part of my Master's thesis trilogy. AI and ML are fun until we dive into the calculations! 📦</p>
+                        <p class="entry-signature">Until the next adventure, stay tenacious and curious!</p>
+                        <div class="entry-tags"><span>RNN</span><span>Biomedical</span><span>Neural Networks</span><span>ANUBiH</span><span>Industry 5.0</span></div>
+                    </div>
+                </article>
+
+                <!-- ANUBiH Industry 4.0 -->
+                <article class="timeline-entry" data-category="2024">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag conference">Conference</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>ANUBiH: Industry 4.0 Conference 🏭</h3>
+                        <p>Contributing to the conversation on AI, automation, and the future of industry at the Academy of Sciences and Arts.</p>
+                        <div class="entry-tags"><span>Industry 4.0</span><span>AI</span><span>Automation</span><span>ANUBiH</span></div>
+                    </div>
+                </article>
+
+                <!-- Summer School Telemedical -->
+                <article class="timeline-entry" data-category="2024">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag school">Summer School</span>
+                            <span class="entry-location">📍 2024</span>
+                        </div>
+                        <h3>Summer School: Telemedical Care & AI in Digital Health 🏥</h3>
+                        <p>Deep dive into <strong>telemedical care in pharmacy</strong> and <strong>AI integration in advancing digital health</strong>.</p>
+                        <p>Exploring how technology can make healthcare more accessible and intelligent.</p>
+                        <div class="entry-tags"><span>Telemedicine</span><span>Digital Health</span><span>AI</span><span>Pharmacy</span></div>
+                    </div>
+                </article>
+
+                <!-- CEI Trieste 2024 -->
+                <article class="timeline-entry" data-category="2024">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag school">Spring School</span>
+                            <span class="entry-location">📍 Trieste, Italy 🇮🇹</span>
+                        </div>
+                        <h3>12th CEI Spring School in Trieste 🇮🇹</h3>
+                        <p>First time at the CEI Spring School in Trieste — an experience that led me to return as the sole Bosnian representative in 2025!</p>
+                        <p>Clinical engineering, digital health, and making international connections. ♡</p>
+                        <div class="entry-tags"><span>Clinical Engineering</span><span>CEI</span><span>Italy</span><span>Digital Health</span></div>
+                    </div>
+                </article>
+
+                <!-- PhD Decision -->
+                <article class="timeline-entry" data-category="2024">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2024</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag milestone">Life Milestone</span>
+                            <span class="entry-location">📍 A New Chapter</span>
+                        </div>
+                        <h3>"Is Getting a PhD Worth It?" — YES, With Purpose 💖</h3>
+                        <p>Discovered my AuDHD diagnosis right before PhD enrollment. My brain runs on <strong>two operating systems</strong>: autism craves order, ADHD thrives in chaos.</p>
+                        <p>Decided to dedicate this stage of my life to those with <strong>no system or community to support them</strong>.</p>
+                        <p><strong>"We are not broken, but different by design, and just as valuable as anyone else."</strong></p>
+                        <p>I chose to <strong>fight prejudice and stigma through academic development</strong>. Find your purpose and fight for it.</p>
+                        <div class="entry-tags"><span>AuDHD</span><span>Purpose</span><span>Advocacy</span><span>PhD Journey</span></div>
+                    </div>
+                </article>
+
+                <!-- 2023 -->
+                <div class="year-marker" data-year="2023">
+                    <span>2023</span>
+                </div>
+
+                <!-- MEDICON & CMBEBIH 2023 -->
+                <article class="timeline-entry" data-category="2023">
+                    <div class="timeline-marker"></div>
+                    <p class="timeline-date">2023</p>
+                    <div class="timeline-card">
+                        <div class="card-header">
+                            <span class="entry-tag conference">Conference</span>
+                            <span class="entry-location">📍 Sarajevo, BiH</span>
+                        </div>
+                        <h3>MEDICON'23 & CMBEBIH'23: Chair + Presenter 🎓</h3>
+                        <p>Fresh out of Bachelor's, already making moves!</p>
+                        <p><strong>Chair of Biomechanics and Robotics session</strong> + student presenter with a comprehensive review paper on Brain-Computer Interfaces.</p>
+                        <p>Also part of the <strong>local organizing committee</strong> for the conference.</p>
+                        <p>This is where it all began... 🚀</p>
+                        <div class="entry-tags"><span>Session Chair</span><span>BCI</span><span>Presenter</span><span>Organizing Committee</span><span>Mediterranean Conference</span></div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="more-adventures">
+                <p>✦ And this is just the beginning... more adventures loading! ✦</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 Amina Radončić. Crafted with 💜 by a neurodivergent mind.</p>
+                <p class="signature">Until the next adventure, stay tenacious and curious! ✦</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+function toggleNav() {
+    const navMenu = document.getElementById('navMenu');
+    navMenu.classList.toggle('open');
+}
+
+// Filter functionality
+const filterTags = document.querySelectorAll('.filter-tag');
+const timelineEntries = document.querySelectorAll('.timeline-entry');
+const yearMarkers = document.querySelectorAll('.year-marker');
+
+filterTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+        filterTags.forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        const filter = tag.dataset.filter;
+
+        timelineEntries.forEach(entry => {
+            if (filter === 'all' || entry.dataset.category === filter) {
+                entry.style.display = 'block';
+                setTimeout(() => entry.classList.add('visible'), 100);
+            } else {
+                entry.classList.remove('visible');
+                setTimeout(() => entry.style.display = 'none', 300);
+            }
+        });
+
+        yearMarkers.forEach(marker => {
+            if (filter === 'all' || marker.dataset.year === filter) {
+                marker.style.display = 'flex';
+            } else {
+                marker.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Initial animation
+setTimeout(() => {
+    timelineEntries.forEach((entry, index) => {
+        setTimeout(() => entry.classList.add('visible'), index * 100);
+    });
+}, 300);
+    </script>
+</body>
+</html>
