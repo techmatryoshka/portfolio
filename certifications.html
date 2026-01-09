@@ -1414,6 +1414,107 @@ blockquote {
     .cert-grid { grid-template-columns: 1fr; }
 }
 
+
+/* ============================================
+   HAMBURGER MENU - MOBILE
+   ============================================ */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--purple-primary);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Hamburger animation when open */
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 1024px) {
+    .nav-toggle {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(13, 13, 15, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        border-left: 1px solid var(--border);
+        transition: right 0.3s ease;
+        z-index: 999;
+        gap: 0.5rem;
+    }
+
+    .nav-menu.open {
+        right: 0;
+    }
+
+    .nav-menu a {
+        padding: 1rem;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background: rgba(199, 125, 255, 0.15);
+    }
+
+    /* Overlay */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -1638,11 +1739,53 @@ blockquote {
         </div>
     </footer>
 
-    <script>
+    
+
+<script>
+// Navigation Toggle
 function toggleNav() {
     const navMenu = document.getElementById('navMenu');
+    const navToggle = document.querySelector('.nav-toggle');
+    const overlay = document.querySelector('.nav-overlay');
+    
     navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active');
+    
+    if (overlay) {
+        overlay.classList.toggle('active');
+    }
+    
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
 }
-    </script>
+
+// Close nav when clicking overlay or link
+document.addEventListener('DOMContentLoaded', function() {
+    // Create overlay if it doesn't exist
+    if (!document.querySelector('.nav-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        overlay.onclick = toggleNav;
+        document.body.appendChild(overlay);
+    }
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.querySelector('.nav-toggle');
+            const overlay = document.querySelector('.nav-overlay');
+            
+            if (navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                navToggle.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>
