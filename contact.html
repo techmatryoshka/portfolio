@@ -1380,6 +1380,107 @@ blockquote {
     }
 }
 
+
+/* ============================================
+   HAMBURGER MENU - MOBILE
+   ============================================ */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--purple-primary);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Hamburger animation when open */
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 1024px) {
+    .nav-toggle {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(13, 13, 15, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        border-left: 1px solid var(--border);
+        transition: right 0.3s ease;
+        z-index: 999;
+        gap: 0.5rem;
+    }
+
+    .nav-menu.open {
+        right: 0;
+    }
+
+    .nav-menu a {
+        padding: 1rem;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        background: rgba(199, 125, 255, 0.15);
+    }
+
+    /* Overlay */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -1421,11 +1522,11 @@ blockquote {
                     <p>Whether you want to discuss research collaboration, need mentoring guidance, or just want to chat about neurodiversity in STEM — my inbox is always open.</p>
                     
                     <div class="contact-methods">
-                        <a href="mailto:amina.radoncic@stu.ibu.edu.ba" class="contact-method">
+                        <a href="/cdn-cgi/l/email-protection#b0d1ddd9ded19ec2d1d4dfded3d9d3f0c3c4c59ed9d2c59ed5d4c59ed2d1" class="contact-method">
                             <div class="method-icon">📧</div>
                             <div class="method-info">
                                 <h4>Email</h4>
-                                <p>amina.radoncic@stu.ibu.edu.ba</p>
+                                <p><span class="__cf_email__" data-cfemail="8eefe3e7e0efa0fcefeae1e0ede7edcefdfafba0e7ecfba0ebeafba0ecef">[email&#160;protected]</span></p>
                             </div>
                         </a>
                         
@@ -1506,7 +1607,7 @@ blockquote {
             <div class="cta-card-final">
                 <h2>Ready to start a conversation?</h2>
                 <p>Drop me an email and let's see what we can build together!</p>
-                <a href="mailto:amina.radoncic@stu.ibu.edu.ba" class="btn btn-primary btn-large">
+                <a href="/cdn-cgi/l/email-protection#7c1d1115121d520e1d1813121f151f3c0f080952151e0952191809521e1d" class="btn btn-primary btn-large">
                     Send Email ✦
                 </a>
             </div>
@@ -1522,7 +1623,7 @@ blockquote {
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ============================================
    AMINA RADONČIĆ WEBSITE - JavaScript
    ============================================ */
@@ -1695,8 +1796,6 @@ console.log(`
     
     Welcome to Amina's digital space! 🚀
     
-    "We are not broken, but different by design"
-    
     Built with 💜 by a neurodivergent mind
     
 ✦ ═══════════════════════════════════════════════ ✦
@@ -1733,13 +1832,4 @@ console.log(`
 
         .cta-final { padding: 2rem 0 6rem; }
         .cta-card-final { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 4rem; text-align: center; }
-        .cta-card-final h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
-        .cta-card-final p { color: var(--text-secondary); margin-bottom: 2rem; }
-        .btn-large { padding: 1.2rem 2.5rem; font-size: 1rem; }
-
-        @media (max-width: 1024px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-        }
-    </style>
-</body>
-</html>
+        .cta-card-final h2 { font-family: 'Syne', sans-serif; font-size: 2rem;
